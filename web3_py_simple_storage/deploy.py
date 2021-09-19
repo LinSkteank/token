@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-with open("/home/zero/Desktop/myTokenProject/web3_py_simple_storage/SimpleStorage.sol", "r") as file:
+with open("/home/zero/Desktop/myTokenProject/token/web3_py_simple_storage/SimpleStorage.sol", "r") as file:
     simple_storage_file = file.read()
     # print(simple_storage_file)
 
@@ -79,7 +79,7 @@ transaction = SimpleStorage.constructor().buildTransaction({"chainId": chain_id,
 signed_txn = w3.eth.account.sign_transaction(transaction, private_key=private_key)
 # print(signed_txn)
 
-#Send this signed transaction
+# Send this signed transaction
 print("Deploying contract...")
 tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
 tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
@@ -94,7 +94,7 @@ simple_storage = w3.eth.contract(address=tx_receipt.contractAddress, abi=abi)
 
 # call
 # tr
-print(simple_storage.functions.retrieve().call())
+# print(simple_storage.functions.retrieve().call())
 print("Updating contract...")
 # print(simple_storage.functions.store(15).call())
 store_transaction = simple_storage.functions.store(15).buildTransaction({
